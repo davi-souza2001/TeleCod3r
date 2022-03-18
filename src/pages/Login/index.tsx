@@ -5,9 +5,9 @@ import './login.css'
 
 export function Login() {
   return (
-    <div className="contentGeral">
+    <div className="contentGeralLogin">
       <div className="boxLogin">
-        <div className="contentTitle">
+        <div className="contentTitleLogin">
           <img src={Cod3rLogo} alt="Cod3r Logo" />
           <p>TeleCod3r</p>
         </div>
@@ -15,14 +15,14 @@ export function Login() {
           <p>Login with</p>
         </div>
         <div className="contentIconGoogle">
-          <div className="contentIcon">
+          <div className="contentIconLogin">
             <AiFillGoogleCircle style={{ cursor: 'pointer', color: '#fff' }} />
           </div>
-          <div className="contentMensage">
+          <div className="contentMensageLogin">
             <p>Logar com Google</p>
           </div>
         </div>
-        <div className="contentReadMore">
+        <div className="contentReadMoreLogin">
           <h4>The chat for Devs</h4>
           <p>Interact with your dev friends here with our chat</p>
         </div>

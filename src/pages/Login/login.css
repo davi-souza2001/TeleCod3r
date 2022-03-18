@@ -3,7 +3,7 @@ img{
     width: 100px;
 }
 
-.contentGeral{
+.contentGeralLogin{
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -18,7 +18,7 @@ img{
     border-radius: 10px;
 }
 
-.contentTitle{
+.contentTitleLogin{
     width: 100%;
     height: 100px;
     display: flex;
@@ -52,7 +52,7 @@ img{
     border-radius: 5px;
 }
 
-.contentIcon{
+.contentIconLogin{
     height: 100%;
     width: 60px;
     display: flex;
@@ -62,7 +62,7 @@ img{
     border-right: 1px solid #c2c2c2;
 }
 
-.contentMensage{
+.contentMensageLogin{
     width: 100%;
     height: 100%;
     display: flex;
@@ -74,7 +74,7 @@ img{
     cursor: pointer;
 }
 
-.contentReadMore{
+.contentReadMoreLogin{
     height: 150px;
     width: 100%;
     display: flex;
@@ -83,6 +83,6 @@ img{
     flex-direction: column;
 }
 
-.contentReadMore p{
+.contentReadMoreLogin p{
     color: #4285F4;
 }
