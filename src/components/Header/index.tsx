@@ -1,7 +1,6 @@
 import Cod3rLogo from '../../../public/img/Cod3rLogo.png'
-import './header.css'
 
-export default function Header() {
+export function Header() {
     return (
         <div className="contentGeral">
             <div className="contentTitleLogo">
