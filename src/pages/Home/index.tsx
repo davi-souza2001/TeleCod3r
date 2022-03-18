@@ -1,10 +1,10 @@
+import Header from '../../components/Header'
 import './home.css'
 
 export function Home() {
   return (
     <div className="contentGeral">
-      <h1>O.a</h1>
+      <Header/>
     </div>
   )
 }
-Developer chat project.
