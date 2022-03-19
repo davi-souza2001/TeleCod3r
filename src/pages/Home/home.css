@@ -1,3 +1,9 @@
+.contentGeralHome{
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
 .contentLeftBarHome{
     width: 300px;
     height: 91vh;

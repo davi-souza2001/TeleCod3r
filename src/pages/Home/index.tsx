@@ -4,55 +4,60 @@ import './home.css'
 
 export function Home() {
   return (
-    <div className="contentGeralHome">
+    <>
       <Header />
-      <div className="contentLeftBarHome">
-        <div className="contentMensageMembersHome">
-          <p>Membros online</p>
+      <div className="contentGeralHome">
+        <div className="contentLeftBarHome">
+          <div className="contentMensageMembersHome">
+            <p>Membros online</p>
+          </div>
+          <div className="contentBoxUsersHome">
+            <div className="boxUserHome">
+              <img src={Cod3rLogo} alt="User Image" />
+              <p>Davi Souza</p>
+            </div>
+            <div className="boxUserHome">
+              <img src={Cod3rLogo} alt="User Image" />
+              <p>Davi Souza</p>
+            </div>
+            <div className="boxUserHome">
+              <img src={Cod3rLogo} alt="User Image" />
+              <p>Davi Souza</p>
+            </div>
+            <div className="boxUserHome">
+              <img src={Cod3rLogo} alt="User Image" />
+              <p>Davi Souza</p>
+            </div>
+            <div className="boxUserHome">
+              <img src={Cod3rLogo} alt="User Image" />
+              <p>Davi Souza</p>
+            </div>
+            <div className="boxUserHome">
+              <img src={Cod3rLogo} alt="User Image" />
+              <p>Davi Souza</p>
+            </div>
+            <div className="boxUserHome">
+              <img src={Cod3rLogo} alt="User Image" />
+              <p>Davi Souza</p>
+            </div>
+            <div className="boxUserHome">
+              <img src={Cod3rLogo} alt="User Image" />
+              <p>Davi Souza</p>
+            </div>
+            <div className="boxUserHome">
+              <img src={Cod3rLogo} alt="User Image" />
+              <p>Davi Souza</p>
+            </div>
+            <div className="boxUserHome">
+              <img src={Cod3rLogo} alt="User Image" />
+              <p>Davi Souza</p>
+            </div>
+          </div>
         </div>
-        <div className="contentBoxUsersHome">
-          <div className="boxUserHome">
-            <img src={Cod3rLogo} alt="User Image" />
-            <p>Davi Souza</p>
-          </div>
-          <div className="boxUserHome">
-            <img src={Cod3rLogo} alt="User Image" />
-            <p>Davi Souza</p>
-          </div>
-          <div className="boxUserHome">
-            <img src={Cod3rLogo} alt="User Image" />
-            <p>Davi Souza</p>
-          </div>
-          <div className="boxUserHome">
-            <img src={Cod3rLogo} alt="User Image" />
-            <p>Davi Souza</p>
-          </div>
-          <div className="boxUserHome">
-            <img src={Cod3rLogo} alt="User Image" />
-            <p>Davi Souza</p>
-          </div>
-          <div className="boxUserHome">
-            <img src={Cod3rLogo} alt="User Image" />
-            <p>Davi Souza</p>
-          </div>
-          <div className="boxUserHome">
-            <img src={Cod3rLogo} alt="User Image" />
-            <p>Davi Souza</p>
-          </div>
-          <div className="boxUserHome">
-            <img src={Cod3rLogo} alt="User Image" />
-            <p>Davi Souza</p>
-          </div>
-          <div className="boxUserHome">
-            <img src={Cod3rLogo} alt="User Image" />
-            <p>Davi Souza</p>
-          </div>
-          <div className="boxUserHome">
-            <img src={Cod3rLogo} alt="User Image" />
-            <p>Davi Souza</p>
-          </div>
+        <div>
+          asdasd
         </div>
       </div>
-    </div>
+    </>
   )
 }
