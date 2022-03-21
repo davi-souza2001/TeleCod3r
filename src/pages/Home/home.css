@@ -1,5 +1,5 @@
 .contentGeralHome{
-    height: 100%;
+    height: 91vh;
     width: 100%;
     display: flex;
 }
@@ -32,4 +32,47 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+}
+
+.contentBoxMensagesHome{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.contentBoxChatHome{
+    background-color: #dadada;
+    width: 100%;
+    height: 100%;
+}
+
+.contentInputMensageHome{
+    height: 80px;
+    width: 100%;
+    background-color: #4285F4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contentInputMensageHome form input{
+    width: 500px;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    margin-right: 20px;
+    background-color: #ebebeb;
+}
+
+.contentInputMensageHome form button{
+    height: 30px;
+    width: 30px;
+    outline: none;
+    border: none;
+    border-radius: 9999px;
+    background-color: #ebebeb;
 }

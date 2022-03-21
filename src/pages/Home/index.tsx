@@ -1,3 +1,5 @@
+import { HiPaperAirplane } from "react-icons/hi";
+
 import { Header } from '../../components/Header'
 import { BoxUser } from '../../components/BoxUser'
 import './home.css'
@@ -15,8 +17,19 @@ export function Home() {
             <BoxUser />
           </div>
         </div>
-        <div>
-          asdasd
+        <div className="contentBoxMensagesHome">
+          <div className="contentBoxChatHome">
+            <p>sadasdas</p>
+            <p>sadasdas</p>
+            <p>sadasdas</p>
+            <p>sadasdas</p>
+          </div>
+          <div className="contentInputMensageHome">
+            <form>
+              <input type="text" />
+              <button><HiPaperAirplane/></button>
+            </form>
+          </div>
         </div>
       </div>
     </>
