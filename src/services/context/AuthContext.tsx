@@ -1,4 +1,4 @@
-import { createContext, MouseEventHandler, useEffect, useState } from 'react';
+import { createContext, Key, MouseEventHandler, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Cookie from 'js-cookie';
 
@@ -13,19 +13,19 @@ import {
   onValue,
 } from '../../firebase/config';
 
+interface User {
+  id: any ;
+  email?: String | null ;
+  name?: String | null ;
+  photo?: String | null ;
+}
+
 interface AuthContextProps {
   loginGoogle?: () => Promise<void>;
   logout?: any;
   user?: User;
   getIfUserExists?: Function;
-  users?: Array<Object>;
-}
-
-interface User {
-  id: String;
-  email?: String | null;
-  name?: String | null;
-  photo?: String | null;
+  users?: Array<User>;
 }
 
 const AuthContext = createContext<AuthContextProps>({});
@@ -66,6 +66,7 @@ export function AuthProvider(props: any) {
     name: '',
     photo: ''
   })
+  const [users, setUsers] = useState<User[]>([])
   const token = Cookie.get('Admin-cookie-Telecod3r')
   let navigate = useNavigate();
 
@@ -82,7 +83,6 @@ export function AuthProvider(props: any) {
         };
         setUser(userFinal)
         setUserInDataBase(userFinal)
-        console.log(user)
         navigate('/');
 
       })
@@ -111,6 +111,27 @@ export function AuthProvider(props: any) {
       });
   }
 
+  async function getUsers() {
+    const dbRef = ref(database);
+    get(child(dbRef, `/users`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          // console.log(snapshot.val())
+          const allUsers = snapshot.val();
+          const userList: Array<any> = [];
+          for (let id in allUsers) {
+            userList.push({ id, ...allUsers[id] });
+          }
+          setUsers(userList);
+        } else {
+          console.log('Não tem nada');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   useEffect(() => {
     if (token) {
       searchUserInformation(token);
@@ -119,8 +140,12 @@ export function AuthProvider(props: any) {
     }
   }, [token]);
 
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ loginGoogle, user, logout }}>
+    <AuthContext.Provider value={{ loginGoogle, user, logout, users }}>
       {props.children}
     </AuthContext.Provider>
   )

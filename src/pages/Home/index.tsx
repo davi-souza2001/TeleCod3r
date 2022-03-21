@@ -7,10 +7,10 @@ import './home.css'
 import UseAuth from "../../services/hooks/useAuth";
 
 export function Home() {
-  const {user} = UseAuth()
-
-  console.log(user)
-
+  const {user, users} = UseAuth()
+  users?.map((prof) => {
+    console.log(prof.name)
+  })
   return (
     <>
       <Header nameUser={user?.name || 'Sem login'}/>
@@ -20,7 +20,11 @@ export function Home() {
             <p>Membros online</p>
           </div>
           <div className="contentBoxUsersHome">
-            <BoxUser />
+            {users?.map((users) => {
+              return(
+                <BoxUser userName={users?.name} key={users?.id}/>
+              )
+            })}
           </div>
         </div>
         <div className="contentBoxMensagesHome">
