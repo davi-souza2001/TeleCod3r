@@ -4,11 +4,16 @@ import { BoxChat } from "../../components/BoxChat";
 import { Header } from '../../components/Header'
 import { BoxUser } from '../../components/BoxUser'
 import './home.css'
+import UseAuth from "../../services/hooks/useAuth";
 
 export function Home() {
+  const {user} = UseAuth()
+
+  console.log(user)
+
   return (
     <>
-      <Header />
+      <Header nameUser={user?.name || 'Sem login'}/>
       <div className="contentGeralHome">
         <div className="contentLeftBarHome">
           <div className="contentMensageMembersHome">

@@ -1,27 +1,126 @@
-import { createContext, useEffect, useState } from 'react';
-import User from '../../models/User';
+import { createContext, MouseEventHandler, useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import Cookie from 'js-cookie';
 
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import {
+  auth,
+  database,
+  ref,
+  get,
+  set,
+  child,
+  onValue,
+} from '../../firebase/config';
+
 interface AuthContextProps {
-    loading?: boolean;
-    loginGoogle?: () => Promise<void>;
-    user?: User;
-    getIfUserExists?: Function;
-    users?: Array<Object>;
-    alo?: String
+  loginGoogle?: () => Promise<void>;
+  logout?: any;
+  user?: User;
+  getIfUserExists?: Function;
+  users?: Array<Object>;
+}
+
+interface User {
+  id: String;
+  email?: String | null;
+  name?: String | null;
+  photo?: String | null;
 }
 
 const AuthContext = createContext<AuthContextProps>({});
+const provider = new GoogleAuthProvider();
 
-export function AuthProvider(props: any){
+function setCookieIdUser(user: User) {
+  Cookie.set('Admin-cookie-Telecod3r', user.id, {
+    expires: 7,
+  });
+}
 
-    const alo = 'alo'
+async function setUserInDataBase(user: User) {
+  const dbRef = ref(database);
+  get(child(dbRef, `users/${user.id}`))
+    .then((snapshot: any) => {
+      if (snapshot.exists()) {
+        setCookieIdUser(user);
+      }
+      else {
+        set(ref(database, 'users/' + user.id), {
+          name: user.name,
+          email: user.email,
+          photo: user.photo,
+          id: user.id,
+        });
+        setCookieIdUser(user);
+      }
+    })
+    .catch((error: any) => {
+      console.error(error);
+    });
+}
 
-    return (
-        <AuthContext.Provider value={{ alo }}>
-            {props.children}
-        </AuthContext.Provider>
-    )
+export function AuthProvider(props: any) {
+  const [user, setUser] = useState<User>({
+    id: '',
+    email: '',
+    name: '',
+    photo: ''
+  })
+  const token = Cookie.get('Admin-cookie-Telecod3r')
+  let navigate = useNavigate();
+
+
+  async function loginGoogle() {
+    await signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        const userFinal: User = {
+          name: user.displayName,
+          email: user.email,
+          photo: user.photoURL,
+          id: user.uid,
+        };
+        setUser(userFinal)
+        setUserInDataBase(userFinal)
+        console.log(user)
+        navigate('/');
+
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  }
+
+  function logout() {
+    Cookie.remove('Admin-cookie-Telecod3r');
+  }
+
+  async function searchUserInformation(userToken: String) {
+    const dbRef = ref(database);
+    get(child(dbRef, `/users/${userToken}`))
+      .then((res) => {
+        if (res.exists()) {
+          // console.log(res.val())
+          setUser(res.val());
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  useEffect(() => {
+    if (token) {
+      searchUserInformation(token);
+    }
+  }, [token]);
+
+  return (
+    <AuthContext.Provider value={{ loginGoogle, user, logout }}>
+      {props.children}
+    </AuthContext.Provider>
+  )
 }
 
 export default AuthContext;

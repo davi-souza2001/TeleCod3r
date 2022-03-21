@@ -2,11 +2,12 @@ import Cod3rLogo from '../../../public/img/Cod3rLogo.png'
 import { AiFillGoogleCircle } from 'react-icons/ai'
 
 import './login.css'
-import useAuth from '../../services/hooks/useAuth'
+import UseAuth from '../../services/hooks/useAuth'
 
 export function Login() {
-  const {alo} = useAuth()
-  console.log(alo)
+
+  const { loginGoogle } = UseAuth()
+
   return (
     <div className="contentGeralLogin">
       <div className="boxLogin">
@@ -17,7 +18,7 @@ export function Login() {
         <div className="contentAlertLogin">
           <p>Login with</p>
         </div>
-        <div className="contentIconGoogle">
+        <div className="contentIconGoogle" onClick={loginGoogle}>
           <div className="contentIconLogin">
             <AiFillGoogleCircle style={{ cursor: 'pointer', color: '#fff' }} />
           </div>

@@ -1,8 +1,15 @@
+import UseAuth from '../../services/hooks/useAuth'
 import Cod3rLogo from '../../../public/img/Cod3rLogo.png'
 
 import './header.css'
 
-export function Header() {
+interface HeaderProps {
+    nameUser?: String
+}
+
+export function Header(props: HeaderProps) {
+    const { logout } = UseAuth()
+
     return (
         <div className="contentGeralHeader">
             <div className="contentTitleLogoHeader">
@@ -10,7 +17,7 @@ export function Header() {
                 <h3>TeleCod3r</h3>
             </div>
             <div className="contentUserInfoHeader">
-                <p>Davi Souza</p>
+                <p onClick={logout}>{props.nameUser}</p>
                 <img src={Cod3rLogo} alt="imagem usuário" />
             </div>
         </div>
