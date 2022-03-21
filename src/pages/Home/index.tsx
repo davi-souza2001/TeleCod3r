@@ -10,8 +10,8 @@ import useChat from "../../services/hooks/useChat";
 
 export function Home() {
   const { user, users } = UseAuth()
-  const { sendMensage } = useChat()
-  const [mensage, setMensage] = useState('')
+  const {menssages, writeMensage} = useChat()
+  console.log(menssages)
   return (
     <>
       <Header nameUser={user?.name || 'Sem login'} />
@@ -35,8 +35,8 @@ export function Home() {
           </div>
           <div className="contentInputMensageHome">
             <form>
-              <input type="text" onChange={(e) => setMensage(e.target.value)} />
-              <button><HiPaperAirplane /></button>
+              <input type="text" />
+              <button onClick={() => writeMensage('asdas')}><HiPaperAirplane /></button>
             </form>
           </div>
         </div>

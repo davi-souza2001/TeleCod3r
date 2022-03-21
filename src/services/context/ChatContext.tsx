@@ -14,8 +14,8 @@ import {
 import useAuth from '../hooks/useAuth';
 
 interface ChatContextProps {
-    sendMensage?: any
-    messages?: Object[];
+    writeMensage?: any;
+    menssages?: any
 }
 
 const ChatContext = createContext<ChatContextProps>({});
@@ -23,22 +23,14 @@ const ChatContext = createContext<ChatContextProps>({});
 export function ChatProvider(props: any) {
     const { user } = useAuth();
     const [messageSend, setMessageSend] = useState('');
-    const [messages, setMessages] = useState<Object[]>([]);
+    const [menssages, setMenssages] = useState<Object[]>([]);
 
-    function sendMensage(e: any) {
-        e.preventDefault();
-        if (user?.email != '') {
-            const db = database;
-            const postList = ref(db, 'chat/Geral')
-            const newPostRef = push(postList)
-            set(newPostRef, {
-                mensage: e,
-                userSend: user?.email,
-                userNameSend: user?.name
-            });
-        } else {
-            alert('Faça login ou escreva algo para enviar!');
-        }
+    function writeMensage(msg: string) {
+        const db = database;
+        set(ref(db, 'chat/Geral'), {
+            mensage: msg,
+            userSend: 'asdasxcv',
+        });
     }
 
     async function checkChatExists() {
@@ -46,12 +38,11 @@ export function ChatProvider(props: any) {
         const starCountRef = ref(dbRef, 'chat/Geral');
         onValue(starCountRef, async (snapshot) => {
             const data = await snapshot.val();
-            const chatList = [];
-            for (let id in data) {
-                chatList.push({ id, ...data[id] });
-            }
-            setMessages(chatList);
-            console.log(messages)
+            // const chatList = [];
+            // for (let id in data) {
+            //     chatList.push({ id, ...data[id] });
+            // }
+            setMenssages(data);
         });
     }
 
@@ -60,7 +51,7 @@ export function ChatProvider(props: any) {
     }, []);
 
     return (
-        <ChatContext.Provider value={{ messages, sendMensage }}>
+        <ChatContext.Provider value={{ writeMensage, menssages }}>
             {props.children}
         </ChatContext.Provider>
     )
