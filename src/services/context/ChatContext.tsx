@@ -15,21 +15,25 @@ import useAuth from '../hooks/useAuth';
 
 interface ChatContextProps {
     writeMensage?: any;
-    menssages?: any
+    mensagesUsers?: any
 }
 
 const ChatContext = createContext<ChatContextProps>({});
 
 export function ChatProvider(props: any) {
     const { user } = useAuth();
-    const [messageSend, setMessageSend] = useState('');
-    const [menssages, setMenssages] = useState<Object[]>([]);
+    const [mensagesUsers, setMensagesUsers] = useState<Object[]>([]);
 
-    function writeMensage(msg: string) {
+    function writeMensage(msg: String) {
         const db = database;
-        set(ref(db, 'chat/Geral'), {
+        const postList = ref(db, `chat/Geral`)
+        const newPostRef = push(postList)
+        set(newPostRef, {
             mensage: msg,
-            userSend: 'asdasxcv',
+            userSend: user?.email,
+            userReceived: 'Geral',
+            userNameSend: user?.name,
+            id: Math.random()
         });
     }
 
@@ -38,11 +42,11 @@ export function ChatProvider(props: any) {
         const starCountRef = ref(dbRef, 'chat/Geral');
         onValue(starCountRef, async (snapshot) => {
             const data = await snapshot.val();
-            // const chatList = [];
-            // for (let id in data) {
-            //     chatList.push({ id, ...data[id] });
-            // }
-            setMenssages(data);
+            const chatList = [];
+            for (let id in data) {
+                chatList.push({ id, ...data[id] });
+            }
+            setMensagesUsers(chatList);
         });
     }
 
@@ -51,7 +55,7 @@ export function ChatProvider(props: any) {
     }, []);
 
     return (
-        <ChatContext.Provider value={{ writeMensage, menssages }}>
+        <ChatContext.Provider value={{ writeMensage, mensagesUsers }}>
             {props.children}
         </ChatContext.Provider>
     )

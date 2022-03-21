@@ -10,8 +10,9 @@ import useChat from "../../services/hooks/useChat";
 
 export function Home() {
   const { user, users } = UseAuth()
-  const {menssages, writeMensage} = useChat()
-  console.log(menssages)
+  const { writeMensage, mensagesUsers } = useChat()
+  const [mensage, setMensage] = useState('')
+
   return (
     <>
       <Header nameUser={user?.name || 'Sem login'} />
@@ -30,13 +31,20 @@ export function Home() {
         </div>
         <div className="contentBoxMensagesHome">
           <div className="contentBoxChatHome">
-            <BoxChat mensage="alooo" />
-            <BoxChat mensage="loreasd" />
+            {mensagesUsers?.map((msg: any) => {
+              return (
+                <BoxChat mensage={msg.mensage} key={msg.id} />
+              )
+            })}
           </div>
           <div className="contentInputMensageHome">
-            <form>
-              <input type="text" />
-              <button onClick={() => writeMensage('asdas')}><HiPaperAirplane /></button>
+            <form onSubmit={(e) => {
+              e.preventDefault()
+              writeMensage(mensage)
+              setMensage('')
+            }}>
+              <input type="text" onChange={(e) => setMensage(e.target.value)} value={mensage}/>
+              <button type="submit" ><HiPaperAirplane /></button>
             </form>
           </div>
         </div>
