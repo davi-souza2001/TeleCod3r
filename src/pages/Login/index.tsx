@@ -2,8 +2,11 @@ import Cod3rLogo from '../../../public/img/Cod3rLogo.png'
 import { AiFillGoogleCircle } from 'react-icons/ai'
 
 import './login.css'
+import useAuth from '../../services/hooks/useAuth'
 
 export function Login() {
+  const {alo} = useAuth()
+  console.log(alo)
   return (
     <div className="contentGeralLogin">
       <div className="boxLogin">
