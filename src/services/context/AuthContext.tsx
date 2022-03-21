@@ -1,4 +1,4 @@
-import { createContext, Key, MouseEventHandler, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Cookie from 'js-cookie';
 
@@ -10,7 +10,6 @@ import {
   get,
   set,
   child,
-  onValue,
 } from '../../firebase/config';
 
 interface User {
