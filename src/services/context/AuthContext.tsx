@@ -93,7 +93,8 @@ export function AuthProvider(props: any) {
   }
 
   function logout() {
-    Cookie.remove('Admin-cookie-Telecod3r');
+    Cookie.remove('Admin-cookie-Telecod3r')
+    navigate('/login')
   }
 
   async function searchUserInformation(userToken: String) {
@@ -113,6 +114,8 @@ export function AuthProvider(props: any) {
   useEffect(() => {
     if (token) {
       searchUserInformation(token);
+    } else{
+      navigate('/login')
     }
   }, [token]);
 
