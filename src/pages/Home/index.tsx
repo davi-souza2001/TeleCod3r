@@ -20,7 +20,8 @@ export function Home() {
         </div>
         <div className="contentBoxMensagesHome">
           <div className="contentBoxChatHome">
-            <BoxChat/>
+            <BoxChat mensage="alooo"/>
+            <BoxChat mensage="loreasd"/>
           </div>
           <div className="contentInputMensageHome">
             <form>
