@@ -30,9 +30,9 @@ export function ChatProvider(props: any) {
         const newPostRef = push(postList)
         set(newPostRef, {
             mensage: msg,
-            userSend: user?.email,
-            userReceived: 'Geral',
-            userNameSend: user?.name,
+            userSendEmail: user?.email,
+            userSendName: user?.name,
+            userSendPhoto: user?.photo,
             id: Math.random()
         });
     }

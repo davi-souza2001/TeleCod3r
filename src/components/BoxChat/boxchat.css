@@ -19,6 +19,7 @@
 .contentImageBoxChat img{
     width: 60px;
     height: 60px;
+    border-radius: 999px;
 }
 
 .contentMensageBoxChat{

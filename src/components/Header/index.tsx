@@ -4,7 +4,8 @@ import Cod3rLogo from '../../../public/img/Cod3rLogo.png'
 import './header.css'
 
 interface HeaderProps {
-    nameUser?: String
+    nameUser?: String;
+    photoUser?: string | undefined
 }
 
 export function Header(props: HeaderProps) {
@@ -18,7 +19,7 @@ export function Header(props: HeaderProps) {
             </div>
             <div className="contentUserInfoHeader">
                 <p onClick={logout}>{props.nameUser}</p>
-                <img src={Cod3rLogo} alt="imagem usuário" />
+                <img src={props.photoUser || Cod3rLogo} alt="imagem usuário" />
             </div>
         </div>
     )

@@ -16,7 +16,7 @@ interface User {
   id: any ;
   email?: String | null ;
   name?: String | null ;
-  photo?: String | null ;
+  photo?: string | null ;
 }
 
 interface AuthContextProps {

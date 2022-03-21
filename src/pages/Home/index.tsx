@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { HiPaperAirplane } from "react-icons/hi";
 
+import useChat from "../../services/hooks/useChat";
+import UseAuth from "../../services/hooks/useAuth";
+
 import { BoxChat } from "../../components/BoxChat";
 import { Header } from '../../components/Header'
 import { BoxUser } from '../../components/BoxUser'
+
+import Cod3rLogo from '../../../public/img/Cod3rLogo.png'
+
 import './home.css'
-import UseAuth from "../../services/hooks/useAuth";
-import useChat from "../../services/hooks/useChat";
 
 export function Home() {
   const { user, users } = UseAuth()
@@ -15,7 +19,7 @@ export function Home() {
 
   return (
     <>
-      <Header nameUser={user?.name || 'Sem login'} />
+      <Header nameUser={user?.name || 'Sem login'} photoUser={user?.photo || Cod3rLogo} />
       <div className="contentGeralHome">
         <div className="contentLeftBarHome">
           <div className="contentMensageMembersHome">
@@ -24,7 +28,7 @@ export function Home() {
           <div className="contentBoxUsersHome">
             {users?.map((users) => {
               return (
-                <BoxUser userName={users?.name} key={users?.id} />
+                <BoxUser userName={users?.name} photoUser={users?.photo || Cod3rLogo} key={users?.id} />
               )
             })}
           </div>
@@ -33,7 +37,11 @@ export function Home() {
           <div className="contentBoxChatHome">
             {mensagesUsers?.map((msg: any) => {
               return (
-                <BoxChat mensage={msg.mensage} key={msg.id} />
+                <BoxChat
+                  name={msg.userSendName}
+                  mensage={msg.mensage}
+                  photoUser={msg.userSendPhoto}
+                  key={msg.id} />
               )
             })}
           </div>
@@ -43,7 +51,7 @@ export function Home() {
               writeMensage(mensage)
               setMensage('')
             }}>
-              <input type="text" onChange={(e) => setMensage(e.target.value)} value={mensage}/>
+              <input type="text" onChange={(e) => setMensage(e.target.value)} value={mensage} />
               <button type="submit" ><HiPaperAirplane /></button>
             </form>
           </div>

@@ -10,6 +10,7 @@
 .contentGeralHeader img{
     height: 50px;
     width: 50px;
+    border-radius: 9999px;
 }
 
 .contentTitleLogoHeader{
