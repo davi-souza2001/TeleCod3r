@@ -1,5 +1,6 @@
 import { HiPaperAirplane } from "react-icons/hi";
 
+import { BoxChat } from "../../components/BoxChat";
 import { Header } from '../../components/Header'
 import { BoxUser } from '../../components/BoxUser'
 import './home.css'
@@ -19,10 +20,7 @@ export function Home() {
         </div>
         <div className="contentBoxMensagesHome">
           <div className="contentBoxChatHome">
-            <p>sadasdas</p>
-            <p>sadasdas</p>
-            <p>sadasdas</p>
-            <p>sadasdas</p>
+            <BoxChat/>
           </div>
           <div className="contentInputMensageHome">
             <form>

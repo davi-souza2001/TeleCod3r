@@ -1,0 +1,33 @@
+.contentGeralBoxChat{
+    width: 400px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.contentImageBoxChat{
+    height: 80px;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contentImageBoxChat img{
+    width: 60px;
+    height: 60px;
+}
+
+.contentMensageBoxChat{
+    min-height: 80px;
+    width: 100%;
+    margin-left: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.contentMensageBoxChat h4{
+    margin-bottom: -10px;
+}
